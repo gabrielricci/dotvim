@@ -30,10 +30,13 @@ Plugin 'SuperTab'
 Plugin 'tpope/vim-fugitive'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'nvie/vim-flake8'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'flazz/vim-colorschemes'
+Plugin 'bling/vim-airline'
+Plugin 'scrooloose/syntastic'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -53,7 +56,7 @@ filetype plugin indent on    " required
 " Init ricci config
 
 " clipboard
-set clipboard=unnamed
+set clipboard=unnamedplus
 
 " removes trailing spaces
 function! TrimWhiteSpace()
@@ -122,15 +125,27 @@ let g:pep8_map='<leader>8'
 " NerdTree map
 map <c-\> :NERDTreeToggle<CR>
 
+" Airline
+set laststatus=2
+let g:airline#extensions#tabline#enabled = 1
+
+" Syntastic
+let g:syntastic_php_checkers = ['php', 'phpcs']
+
 " tab navigation mappings
 set showtabline=2               " File tabs allways visible
-:nmap <C-e> :tabprevious<cr>
-:nmap <C-r> :tabnext<cr>
-:nmap <C-t> :tabnew<cr>
-:map <C-t> :tabnew<cr>
-:map <C-e> :tabprevious<cr>
-:map <C-r> :tabnext<cr>
-:map <C-w> :tabclose<cr>
-:imap <C-e> <ESC>:tabprevious<cr>i
-:imap <C-r> <ESC>:tabnext<cr>i
-:imap <C-t> <ESC>:tabnew<cr>
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+
+" Buffer/tabs mappings
+map <C-J> :bnext<CR>
+map <C-K> :bprev<CR>
+map <C-L> :tabn<CR>
+map <C-H> :tabp<CR>
+
+" Directory configuration
+set backupdir=~/.vim/backup//
+set directory=~/.vim/swap//
+set undodir=~/.vim/undo//
