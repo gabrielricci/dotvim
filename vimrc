@@ -128,6 +128,8 @@ map <c-\> :NERDTreeToggle<CR>
 " Airline
 set laststatus=2
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 0
+
 
 " Syntastic
 let g:syntastic_php_checkers = ['php', 'phpcs']
