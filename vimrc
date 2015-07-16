@@ -38,8 +38,8 @@ Plugin 'scrooloose/syntastic'
 Plugin 'severin-lemaignan/vim-minimap'
 Plugin 'majutsushi/tagbar'
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'klen/python-mode'
 Plugin 'mitsuhiko/vim-jinja'
+Plugin 'klen/python-mode'
 
 " Colorscheme plugins
 Plugin 'notpratheek/vim-luna'
@@ -65,6 +65,9 @@ filetype plugin indent on    " required
 
 " clipboard
 set clipboard=unnamed
+
+" global settings
+set cursorline
 
 " removes trailing spaces
 function! TrimWhiteSpace()
@@ -147,6 +150,7 @@ let g:syntastic_php_checkers = ['php', 'phpcs']
 
 " Python-mode
 let g:pymode_lint = 1
+let g:pymode_warnings = 0
 let g:pymode_options_max_line_length = 100
 let g:pymode_rope_goto_definition_cmd = 'tabnew'
 let g:pymode_lint_checkers = ['pyflakes', 'pep8']
