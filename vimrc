@@ -31,15 +31,20 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'nvie/vim-flake8'
+" Plugin 'nvie/vim-flake8'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'flazz/vim-colorschemes'
 Plugin 'bling/vim-airline'
 Plugin 'scrooloose/syntastic'
 Plugin 'severin-lemaignan/vim-minimap'
 Plugin 'majutsushi/tagbar'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'klen/python-mode'
+Plugin 'mitsuhiko/vim-jinja'
+
+" Colorscheme plugins
+Plugin 'notpratheek/vim-luna'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'altercation/vim-colors-solarized'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -72,7 +77,7 @@ autocmd FilterWritePre  * :call TrimWhiteSpace()
 autocmd BufWritePre     * :call TrimWhiteSpace()
 
 " colorschema
-syntax enable
+set t_Co=256
 set background=dark
 colorscheme jellybeans
 
@@ -83,7 +88,7 @@ set nu
 set foldmethod=indent
 set foldlevel=99
 
-"sintax highlight
+" sintax highlight
 syntax on                    " syntax highlighing
 filetype on                  " try to detect filetypes
 filetype plugin indent on    " enable loading indent file for filetype
@@ -102,14 +107,18 @@ endif
 au FileType python set omnifunc=pythoncomplete#Complete
 set completeopt=menuone,longest,preview
 
+" Tagbar
+map <F10> :TagbarToggle<CR>
+imap <F10> <Esc>:TagbarToggle<CR>
+
 " pydoc settings
 let g:pydoc_open_cmd = 'vsplit'
 
 " vim-flake8 settings
-let g:flake8_show_quickfix=1  " don't show
-let g:flake8_show_in_gutter=1  " show
-let g:flake8_show_in_file=1  " show
-autocmd BufWritePost *.py call Flake8()
+" let g:flake8_show_quickfix=1  " don't show
+" let g:flake8_show_in_gutter=1  " show
+" let g:flake8_show_in_file=1  " show
+" autocmd BufWritePost *.py call Flake8()
 
 " ctrl-p settings
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc
@@ -133,9 +142,16 @@ set laststatus=2
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
 
-
 " Syntastic
 let g:syntastic_php_checkers = ['php', 'phpcs']
+
+" Python-mode
+let g:pymode_lint = 1
+let g:pymode_options_max_line_length = 100
+let g:pymode_rope_goto_definition_cmd = 'tabnew'
+let g:pymode_lint_checkers = ['pyflakes', 'pep8']
+let g:pymode_lint_cwindow = 1
+let g:pymode_rope = 0
 
 " tab navigation mappings
 set showtabline=2               " File tabs allways visible
@@ -149,6 +165,9 @@ map <C-J> :bnext<CR>
 map <C-K> :bprev<CR>
 map <C-L> :tabn<CR>
 map <C-H> :tabp<CR>
+
+" File types
+au BufRead,BufNewFile *.twig set filetype=htmljinja
 
 " Directory configuration
 set backupdir=~/.vim/backup//
