@@ -163,6 +163,7 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
+set encoding=utf-8
 
 " Buffer/tabs mappings
 map <C-J> :bnext<CR>
@@ -172,6 +173,17 @@ map <C-H> :tabp<CR>
 
 " File types
 au BufRead,BufNewFile *.twig set filetype=htmljinja
+
+au BufNewFile,BufRead *.py set tabstop=4
+au BufNewFile,BufRead *.py set softtabstop=4
+au BufNewFile,BufRead *.py set shiftwidth=4
+au BufNewFile,BufRead *.py set expandtab
+au BufNewFile,BufRead *.py set autoindent
+au BufNewFile,BufRead *.py set fileformat=unix
+
+au BufNewFile,BufRead *.js, *.html, *.css, *.go  set tabstop=2
+au BufNewFile,BufRead *.js, *.html, *.css, *.go  set softtabstop=2
+au BufNewFile,BufRead *.js, *.html, *.css, *.go  set shiftwidth=2
 
 " Directory configuration
 set backupdir=~/.vim/backup//
