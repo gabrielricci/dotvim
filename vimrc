@@ -40,6 +40,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'mitsuhiko/vim-jinja'
 Plugin 'klen/python-mode'
+Plugin 'fatih/vim-go'
 
 " Colorscheme plugins
 Plugin 'notpratheek/vim-luna'
@@ -147,6 +148,11 @@ let g:airline#extensions#tabline#show_buffers = 0
 
 " Syntastic
 let g:syntastic_php_checkers = ['php', 'phpcs']
+let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+
+" Enable goimports instead of gofmt
+let g:go_fmt_command = "goimports"
 
 " Python-mode
 let g:pymode_lint = 1
@@ -156,6 +162,7 @@ let g:pymode_rope_goto_definition_cmd = 'tabnew'
 let g:pymode_lint_checkers = ['pyflakes', 'pep8']
 let g:pymode_lint_cwindow = 1
 let g:pymode_rope = 0
+
 
 " tab navigation mappings
 set showtabline=2               " File tabs allways visible
@@ -181,9 +188,9 @@ au BufNewFile,BufRead *.py set expandtab
 au BufNewFile,BufRead *.py set autoindent
 au BufNewFile,BufRead *.py set fileformat=unix
 
-au BufNewFile,BufRead *.js, *.html, *.css, *.go  set tabstop=2
-au BufNewFile,BufRead *.js, *.html, *.css, *.go  set softtabstop=2
-au BufNewFile,BufRead *.js, *.html, *.css, *.go  set shiftwidth=2
+au BufNewFile,BufRead *.js, *.html, *.css  set tabstop=2
+au BufNewFile,BufRead *.js, *.html, *.css  set softtabstop=2
+au BufNewFile,BufRead *.js, *.html, *.css  set shiftwidth=2
 
 " Directory configuration
 set backupdir=~/.vim/backup//
