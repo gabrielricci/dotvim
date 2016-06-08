@@ -125,7 +125,7 @@ let g:pydoc_open_cmd = 'vsplit'
 " autocmd BufWritePost *.py call Flake8()
 
 " ctrl-p settings
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc
+set wildignore+=*/tmp/*,*/Godeps/_workspace/*,*.so,*.swp,*.zip,*.pyc
 let g:ctrlp_working_path_mode = 'a'
 
 " ctrl-p map
@@ -148,8 +148,9 @@ let g:airline#extensions#tabline#show_buffers = 0
 
 " Syntastic
 let g:syntastic_php_checkers = ['php', 'phpcs']
+let g:syntastic_php_phpcs_args='--standard=PSR2 -n'
 let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+" let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 
 " Enable goimports instead of gofmt
 let g:go_fmt_command = "goimports"
