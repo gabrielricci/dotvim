@@ -125,7 +125,7 @@ let g:pydoc_open_cmd = 'vsplit'
 " autocmd BufWritePost *.py call Flake8()
 
 " ctrl-p settings
-set wildignore+=*/tmp/*,*/Godeps/_workspace/*,*.so,*.swp,*.zip,*.pyc
+set wildignore+=*/tmp/*,*/Godeps/_workspace/*,*.so,*.swp,*.zip,*.pyc,*/vendor/*
 let g:ctrlp_working_path_mode = 'a'
 
 " ctrl-p map
