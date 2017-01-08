@@ -64,6 +64,9 @@ filetype plugin indent on    " required
 
 " Init ricci config
 
+" language
+lang en_US
+
 " clipboard
 set clipboard=unnamed
 
