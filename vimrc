@@ -31,6 +31,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'jistr/vim-nerdtree-tabs'
 " Plugin 'nvie/vim-flake8'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'bling/vim-airline'
@@ -41,6 +42,12 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'mitsuhiko/vim-jinja'
 Plugin 'klen/python-mode'
 Plugin 'fatih/vim-go'
+Plugin 'vim-erlang/vim-erlang-compiler'
+Plugin 'elixir-lang/vim-elixir'
+Plugin 'mattn/webapi-vim'
+Plugin 'mattn/gist-vim'
+Plugin 'tpope/vim-surround'
+Plugin 'zefei/vim-wintabs'
 
 " Colorscheme plugins
 Plugin 'notpratheek/vim-luna'
@@ -86,6 +93,7 @@ autocmd BufWritePre     * :call TrimWhiteSpace()
 " colorschema
 set t_Co=256
 set background=dark
+set termguicolors
 colorscheme jellybeans
 
 " show line numbers
@@ -105,7 +113,7 @@ match ErrorMsg '\s\+$'
 
 " show line limit
 if exists('+colorcolumn')
-  set colorcolumn=100
+  set colorcolumn=80
 else
   au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>100v.\+', -1)
 endif
@@ -128,7 +136,7 @@ let g:pydoc_open_cmd = 'vsplit'
 " autocmd BufWritePost *.py call Flake8()
 
 " ctrl-p settings
-set wildignore+=*/tmp/*,*/Godeps/_workspace/*,*.so,*.swp,*.zip,*.pyc,*/vendor/*
+set wildignore+=*/tmp/*,*/Godeps/_workspace/*,*.so,*.swp,*.zip,*.pyc,*/vendor/*,*.beam
 let g:ctrlp_working_path_mode = 'a'
 
 " ctrl-p map
@@ -142,7 +150,7 @@ map <leader>td <Plug>TaskList
 let g:pep8_map='<leader>8'
 
 " NerdTree map
-map <c-\> :NERDTreeToggle<CR>
+map <c-\> :NERDTreeTabsToggle<CR>
 
 " Airline
 set laststatus=2
@@ -150,6 +158,9 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
 
 " Syntastic
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+let g:syntastic_enable_elixir_checker = 1
 let g:syntastic_php_checkers = ['php', 'phpcs']
 let g:syntastic_php_phpcs_args='--standard=PSR2 -n'
 let g:syntastic_python_checkers = ['flake8']
@@ -161,7 +172,7 @@ let g:go_fmt_command = "goimports"
 " Python-mode
 let g:pymode_lint = 1
 let g:pymode_warnings = 0
-let g:pymode_options_max_line_length = 100
+let g:pymode_options_max_line_length = 80
 let g:pymode_rope_goto_definition_cmd = 'tabnew'
 let g:pymode_lint_checkers = ['pyflakes', 'pep8']
 let g:pymode_lint_cwindow = 1
@@ -192,9 +203,26 @@ au BufNewFile,BufRead *.py set expandtab
 au BufNewFile,BufRead *.py set autoindent
 au BufNewFile,BufRead *.py set fileformat=unix
 
-au BufNewFile,BufRead *.js, *.html, *.css  set tabstop=2
-au BufNewFile,BufRead *.js, *.html, *.css  set softtabstop=2
-au BufNewFile,BufRead *.js, *.html, *.css  set shiftwidth=2
+au BufNewFile,BufRead *.rb,*.ru,*.erb set tabstop=2
+au BufNewFile,BufRead *.rb,*.ru,*.erb set softtabstop=2
+au BufNewFile,BufRead *.rb,*.ru,*.erb set shiftwidth=2
+au BufNewFile,BufRead *.rb,*.ru,*.erb set expandtab
+au BufNewFile,BufRead *.rb,*.ru,*.erb set autoindent
+au BufNewFile,BufRead *.rb,*.ru,*.erb set fileformat=unix
+
+au BufNewFile,BufRead *.erl,*.hrl set tabstop=4
+au BufNewFile,BufRead *.erl,*.hrl set softtabstop=4
+au BufNewFile,BufRead *.erl,*.hrl set shiftwidth=4
+au BufNewFile,BufRead *.erl,*.hrl set expandtab
+au BufNewFile,BufRead *.erl,*.hrl set autoindent
+au BufNewFile,BufRead *.erl,*.hrl set fileformat=unix
+
+au BufNewFile,BufRead *.js,*.html,*.css set tabstop=2
+au BufNewFile,BufRead *.js,*.html,*.css set softtabstop=2
+au BufNewFile,BufRead *.js,*.html,*.css set shiftwidth=2
+au BufNewFile,BufRead *.js,*.html,*.css set expandtab
+au BufNewFile,BufRead *.js,*.html,*.css set autoindent
+au BufNewFile,BufRead *.js,*.html,*.css set fileformat=unix
 
 " Directory configuration
 set backupdir=~/.vim/backup//
